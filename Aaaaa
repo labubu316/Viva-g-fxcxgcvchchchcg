@@ -106,7 +106,67 @@ source = source:sub(1, first - 1) .. replacement .. source:sub(last + 1)
 
 if env.RunawaysScriptLoading ~= coroutine.running() then
     return env.AutoLoot end 
+if env.RunawaysScriptLoading ~= coroutine.running() then
+    return env.AutoLoot
+end
 
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+local gui = Instance.new("ScreenGui")
+gui.Name = "ArhamScriptsPopup"
+gui.ResetOnSpawn = false
+gui.Parent = player:WaitForChild("PlayerGui")
+
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 320, 0, 120)
+frame.Position = UDim2.new(0.5, -160, 0.5, -60)
+frame.BackgroundColor3 = Color3.fromRGB(18, 9, 30)
+frame.BorderSizePixel = 0
+frame.Parent = gui
+
+local corner = Instance.new("UICorner")
+corner.CornerRadius = UDim.new(0, 14)
+corner.Parent = frame
+
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, 0, 0, 65)
+title.BackgroundTransparency = 1
+title.Text = "Arham Scripts"
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
+title.TextSize = 27
+title.Font = Enum.Font.GothamBold
+title.Parent = frame
+
+local loading = Instance.new("TextLabel")
+loading.Size = UDim2.new(1, 0, 0, 35)
+loading.Position = UDim2.new(0, 0, 0, 65)
+loading.BackgroundTransparency = 1
+loading.Text = "Loading scripts..."
+loading.TextColor3 = Color3.fromRGB(130, 70, 190)
+loading.TextSize = 17
+loading.Font = Enum.Font.Gotham
+loading.Parent = frame
+
+task.delay(5, function()
+    if gui and gui.Parent then
+        gui:Destroy()
+    end
+end)
+
+local library = loadstring(source)()
+local ThemeManager = loadstring(game:HttpGet(repo .. "addons/ThemeManager.lua"))()
+
+ThemeManager.Library = library
+ThemeManager:SetDefaultTheme({
+    FontColor = "FFFFFF",
+    MainColor = "1A0D26",
+    AccentColor = "6D3AA8",
+    BackgroundColor = "0D0712",
+    OutlineColor = "321A42"
+})
+
+local SaveManager = loadstring(game:HttpGet(repo .. "addons/SaveManager.lua"))()
 local library = loadstring(source)()
 local ThemeManager = loadstring(game:HttpGet(repo .. "addons/ThemeManager.lua"))()
 ThemeManager.Library = library
