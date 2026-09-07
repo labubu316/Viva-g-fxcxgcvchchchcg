@@ -106,56 +106,51 @@ source = source:sub(1, first - 1) .. replacement .. source:sub(last + 1)
 
 if env.RunawaysScriptLoading ~= coroutine.running() then
     return env.AutoLoot end 
-pcall(function()
-    local Players = game:GetService("Players")
-    local player = Players.LocalPlayer
-    if not player then return end
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
 
-    local gui = Instance.new("ScreenGui")
-    gui.Name = "ArhamScriptsPopup"
-    gui.ResetOnSpawn = false
-    gui.Parent = player:WaitForChild("PlayerGui", 5)
-    if not gui.Parent then
+local gui = Instance.new("ScreenGui")
+gui.Name = "ArhamScriptsPopup"
+gui.ResetOnSpawn = false
+gui.Parent = player:WaitForChild("PlayerGui")
+
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 320, 0, 120)
+frame.Position = UDim2.new(0.5, -160, 0.5, -60)
+frame.BackgroundColor3 = Color3.fromRGB(18, 9, 30)
+frame.BorderSizePixel = 0
+frame.Parent = gui
+
+local corner = Instance.new("UICorner")
+corner.CornerRadius = UDim.new(0, 14)
+corner.Parent = frame
+
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, 0, 0, 65)
+title.BackgroundTransparency = 1
+title.Text = "Arham Scripts"
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
+title.TextSize = 27
+title.Font = Enum.Font.GothamBold
+title.Parent = frame
+
+local loading = Instance.new("TextLabel")
+loading.Size = UDim2.new(1, 0, 0, 35)
+loading.Position = UDim2.new(0, 0, 0, 65)
+loading.BackgroundTransparency = 1
+loading.Text = "Loading scripts..."
+loading.TextColor3 = Color3.fromRGB(130, 70, 190)
+loading.TextSize = 17
+loading.Font = Enum.Font.Gotham
+loading.Parent = frame
+
+task.delay(5, function()
+    if gui and gui.Parent then
         gui:Destroy()
-        return
     end
-
-    local frame = Instance.new("Frame")
-    frame.Size = UDim2.new(0, 300, 0, 100)
-    frame.Position = UDim2.new(0.5, -150, 0.5, -50)
-    frame.BackgroundColor3 = Color3.fromRGB(18, 9, 30)
-    frame.BorderSizePixel = 0
-    frame.Parent = gui
-
-    local corner = Instance.new("UICorner")
-    corner.CornerRadius = UDim.new(0, 12)
-    corner.Parent = frame
-
-    local title = Instance.new("TextLabel")
-    title.Size = UDim2.new(1, 0, 0, 50)
-    title.BackgroundTransparency = 1
-    title.Text = "Arham Scripts"
-    title.TextColor3 = Color3.fromRGB(255, 255, 255)
-    title.TextSize = 24
-    title.Font = Enum.Font.GothamBold
-    title.Parent = frame
-
-    local status = Instance.new("TextLabel")
-    status.Size = UDim2.new(1, 0, 0, 30)
-    status.Position = UDim2.new(0, 0, 0, 50)
-    status.BackgroundTransparency = 1
-    status.Text = "Loading scripts..."
-    status.TextColor3 = Color3.fromRGB(140, 80, 200)
-    status.TextSize = 16
-    status.Font = Enum.Font.Gotham
-    status.Parent = frame
-
-    task.delay(3, function()
-        if gui and gui.Parent then
-            gui:Destroy()
-        end
-    end)
 end)
+
+local library = loadstring(source)()
 local library = loadstring(source)()
 local ThemeManager = loadstring(game:HttpGet(repo .. "addons/ThemeManager.lua"))()
 ThemeManager.Library = library
