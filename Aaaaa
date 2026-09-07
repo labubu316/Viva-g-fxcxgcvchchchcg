@@ -110,6 +110,9 @@ end
 
 local library = loadstring(source)()
 local ThemeManager = loadstring(game:HttpGet(repo .. "addons/ThemeManager.lua"))()
+ThemeManager:SetLibrary(Obsidian)
+ThemeManager:SetFolder("Obsidian")
+ThemeManager:SetDefault("Theme", "Dark Purple")
 local SaveManager = loadstring(game:HttpGet(repo .. "addons/SaveManager.lua"))()
 local options = library.Options
 local toggles = library.Toggles
