@@ -108,7 +108,6 @@ if env.RunawaysScriptLoading ~= coroutine.running() then
     return env.AutoLoot end 
 
 local library = loadstring(source)()
-local library = loadstring(source)()
 local ThemeManager = loadstring(game:HttpGet(repo .. "addons/ThemeManager.lua"))()
 ThemeManager.Library = library
 ThemeManager:SetDefaultTheme({
