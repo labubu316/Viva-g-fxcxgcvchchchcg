@@ -107,7 +107,43 @@ source = source:sub(1, first - 1) .. replacement .. source:sub(last + 1)
 if env.RunawaysScriptLoading ~= coroutine.running() then
     return env.AutoLoot
 end
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
 
+local gui = Instance.new("ScreenGui")
+gui.Name = "ArhamScriptsLoading"
+gui.ResetOnSpawn = false
+gui.Parent = player:WaitForChild("PlayerGui")
+
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 300, 0, 120)
+frame.Position = UDim2.new(0.5, -150, 0.5, -60)
+frame.BackgroundColor3 = Color3.fromRGB(13, 7, 18)
+frame.BorderSizePixel = 0
+frame.Parent = gui
+
+local corner = Instance.new("UICorner")
+corner.CornerRadius = UDim.new(0, 12)
+corner.Parent = frame
+
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, 0, 0, 55)
+title.BackgroundTransparency = 1
+title.Text = "Arham Scripts"
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
+title.TextSize = 25
+title.Font = Enum.Font.GothamBold
+title.Parent = frame
+
+local loading = Instance.new("TextLabel")
+loading.Size = UDim2.new(1, 0, 0, 35)
+loading.Position = UDim2.new(0, 0, 0, 55)
+loading.BackgroundTransparency = 1
+loading.Text = "Loading..."
+loading.TextColor3 = Color3.fromRGB(160, 90, 220)
+loading.TextSize = 18
+loading.Font = Enum.Font.Gotham
+loading.Parent = frame
 local library = loadstring(source)()
 local ThemeManager = loadstring(game:HttpGet(repo .. "addons/ThemeManager.lua"))()
 ThemeManager.Library = library
