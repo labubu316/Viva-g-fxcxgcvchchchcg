@@ -162,16 +162,7 @@ ThemeManager:SetDefaultTheme({
 })
 
 local SaveManager = loadstring(game:HttpGet(repo .. "addons/SaveManager.lua"))()
-local library = loadstring(source)()
-local ThemeManager = loadstring(game:HttpGet(repo .. "addons/ThemeManager.lua"))()
-ThemeManager.Library = library
-ThemeManager:SetDefaultTheme({
-    FontColor = "FFFFFF",
-    MainColor = "1A0D26",
-    AccentColor = "6D3AA8",
-    BackgroundColor = "0D0712",
-    OutlineColor = "321A42"})
-local SaveManager = loadstring(game:HttpGet(repo .. "addons/SaveManager.lua"))()
+ 
 local options = library.Options
 local toggles = library.Toggles
 
