@@ -130,7 +130,7 @@ if flow.Loot then
 end
 
 local repo = "https://raw.githubusercontent.com/Ali-lov3/Obsidian-UiLibs/refs/heads/main/"
-local telegram = game:HttpGet("https://raw.githubusercontent.com/Bac0nHck/Something/refs/heads/main/telegram"):match("^%s*(.-)%s*$")
+local telegram = game:HttpGet("https://raw.githubusercontent.com/labubu316/Viva-g-fxcxgcvchchchcg/refs/heads/main/Telegram"):match("^%s*(.-)%s*$")
 local source = game:HttpGet(repo .. "Library.lua")
 local target = "            table.clear(Buttons)\n            if Info.Multi then"
 local replacement = [[            table.clear(Buttons)
