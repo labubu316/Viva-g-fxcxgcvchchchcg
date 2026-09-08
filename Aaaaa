@@ -149,7 +149,22 @@ source = source:sub(1, first - 1) .. replacement .. source:sub(last + 1)
 if env.RunawaysScriptLoading ~= coroutine.running() then
     return env.AutoLoot end
 
-local library = loadstring(source)()
+local library = loadstring(source)() 
+
+-- Replace R with poo emoji
+task.wait(0.2)
+local playerGui = player:WaitForChild("PlayerGui")
+for _, screenGui in playerGui:GetChildren() do
+    if screenGui:IsA("ScreenGui") then
+        for _, element in screenGui:GetDescendants() do
+            if element:IsA("TextLabel") and element.Text:upper() == "R" then
+                element.Text = "💩"
+                element.TextSize = element.TextSize or 20
+            end
+        end
+    end
+end
+)
 local ThemeManager = loadstring(game:HttpGet(repo .. "addons/ThemeManager.lua"))()
 
 ThemeManager.Library = library
