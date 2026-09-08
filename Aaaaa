@@ -151,14 +151,14 @@ if env.RunawaysScriptLoading ~= coroutine.running() then
 
 local library = loadstring(source)() 
 
--- Replace R with poo emoji
+-- Replace R with A"
 task.wait(0.2)
 local playerGui = player:WaitForChild("PlayerGui")
 for _, screenGui in playerGui:GetChildren() do
     if screenGui:IsA("ScreenGui") then
         for _, element in screenGui:GetDescendants() do
             if element:IsA("TextLabel") and element.Text:upper() == "R" then
-                element.Text = "💩"
+                element.Text = "A"
                 element.TextSize = element.TextSize or 20
             end
         end
